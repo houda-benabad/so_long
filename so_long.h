@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:50:41 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 11:01:32 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:40:13 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+#include "./libft/ft_printf/ft_printf.h"
 
 typedef struct game
 {
@@ -29,6 +30,8 @@ typedef struct game
     int check1;
     int x;
     int y;
+    int mbls;
+    int mbcs;
     void *wall;
     void *floor;
     void *rabbit;

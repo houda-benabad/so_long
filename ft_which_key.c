@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:13:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 12:16:57 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:34:15 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,22 @@ void ft_move(int key, int *a, int *b)
 }
 int ft_check_which_key(int key, t_LIST *game, int *line, int *chara)
 {
-    int a;
-    int b;
-
-    a = 0;
-    b = 0;
-    ft_move(key, &a, &b);
-    if(a == 0 && b == 0)
+    ft_move(key, &(game -> mbls), &(game -> mbcs));
+    if(game -> mbls == 0 && game -> mbcs == 0)
         return (0);
-    if (game -> MAP[*line + a][*chara + b] == '0' || game -> MAP[*line + a][*chara + b] == 'C')
+    if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == '0' || game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'C')
     {
-        if (game -> MAP[*line + a][*chara + b] == 'C')
+        if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'C')
             game -> check1--;
-        game -> MAP[*line + a][*chara + b] = game -> MAP[*line][*chara];
+        game -> MAP[*line + game -> mbls][*chara + game -> mbcs] = game -> MAP[*line][*chara];
         game -> MAP[*line][*chara] = '0';
-        *line = *line + a;
-        *chara = *chara + b;
+        *line = *line + game -> mbls;
+        *chara = *chara + game -> mbcs;
         return (1);
     }
-    else if (game -> MAP[*line + a][*chara + b] == '1')
+    else if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == '1')
         return (0); 
-    else if (game -> MAP[*line + a][*chara + b] == 'E')
+    else if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'E')
     {
         if (game -> check1 == 0)
         {
@@ -67,15 +62,17 @@ int ft_check_which_key(int key, t_LIST *game, int *line, int *chara)
         }
     }
     return (0);
-   
 }
 int ft_which_key(int key, t_LIST *game)
 {
     static int i;
     static int j;
     
-    if (key == 53)   
+    if (key == 53)
+    {
         mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+        exit(0);
+    }
     while (game -> MAP[j])
     {
         while (game -> MAP[j][i] != '\0' && game -> MAP[j][i] != 'P')

@@ -14,13 +14,13 @@ libft/libft.a :
 	make -C libft
 
 $(NAME) : $(OBJS) libft/libft.a
-	$(CC) $(CFLAGS)  $(SRCS) -o  $(NAME) -lmlx -framework OpenGL -framework AppKit libft/libft.a
+	$(CC) $(CFLAGS)  $(SRCS) -o  $(NAME) -lmlx -framework OpenGL -framework AppKit libft/libft.a libft/ft_printf/libftprintf.a
 
 clean : 
 	rm -rf $(OBJS)
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) libft/libft.a
+	rm -rf $(NAME) libft/libft.a libft/ft_printf/libftprintf.a
 
 re : fclean all

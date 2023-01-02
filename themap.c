@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:35:33 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 10:03:27 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:31:18 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ char **themap(char *map)
         LINE = ft_join(LINE, line);
         line = get_next_line(fd);
     }
-    if (LINE[ft_strlen(LINE) - 1] == '\n' && LINE[ft_strlen(LINE)] == '\0')
+    if (LINE[ft_strlen(LINE) - 1] == '\n' && (LINE[ft_strlen(LINE)] == '\0' || LINE[ft_strlen(LINE)] == '\n'))
         return (NULL);
     game.MAP = ft_split(LINE, '\n');
     return (game.MAP);
 }
-

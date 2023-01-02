@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:59:19 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 11:29:13 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:18:32 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,16 @@ int ft_valid(t_LIST *game, char c, char chara, int line)
     if (line == 0 || chara == 0 || chara == game -> len - 1|| line == game -> dolen - 1)
     {   
         if (c != '1')
-            return (1);
+            return (2);
     }
     else if (c == 'P' || c == 'E')
         game -> check++;
     else if (c == 'C')
         game -> check1++;
     else if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
-        return (1);
-    //printf("%d", game -> check1);
-    if (line == game -> dolen && (game -> check != 2 || game -> check1 == 0))
-        return (1);
+        return (3);
+    if (line == game -> dolen - 1 && (game -> check != 2 || game -> check1 == 0))
+        return (4);
     return (0);
 }
 int ft_check(t_LIST *game)
@@ -55,8 +54,8 @@ int ft_check(t_LIST *game)
             i = 0;
             while (game ->MAP[j][i])
             {
-                if (ft_valid(game, game -> MAP[j][i], i, j) == 1)
-                    return (1);
+                if (ft_valid(game, game -> MAP[j][i], i, j) != 0)
+                    return (ft_valid(game, game -> MAP[j][i], i, j));
                 i++;
             }   
             j++;
