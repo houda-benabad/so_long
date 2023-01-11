@@ -6,18 +6,18 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 11:39:57 by hobenaba          #+#    #+#             */
-/*   Updated: 2022/12/31 11:41:01 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:49:53 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t ft_dostrlen(char **MAP)
+size_t	ft_dostrlen(char **map)
 {
-    size_t i;
-    
-    i = 0;
-    while (MAP[i])
-        i++;
-    return (i);
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
 }

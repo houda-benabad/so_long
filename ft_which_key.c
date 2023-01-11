@@ -6,87 +6,73 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:13:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 15:34:15 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:50:14 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
 
-void ft_move(int key, int *a, int *b)
+void	ft_move(int key, int *a, int *b)
 {
-    if (key == 13 || key == 126)
-    {
-        *a = -1;
-        *b = 0;
-    }
-    else if (key == 0 || key == 123)
-    {
-        *a = 0;
-        *b = -1;
-    }
-    else if (key == 1 || key  == 125)
-    {
-        *a = 1;
-        *b = 0;
-    }
-    else if (key == 2 || key == 124)
-    {
-        *a = 0;
-        *b = 1;
-    }
+	*a = 0;
+	*b = 0;
+	if (key == 13 || key == 126)
+		*a = -1;
+	else if (key == 0 || key == 123)
+		*b = -1;
+	else if (key == 1 || key == 125)
+		*a = 1;
+	else if (key == 2 || key == 124)
+		*b = 1;
 }
-int ft_check_which_key(int key, t_LIST *game, int *line, int *chara)
+
+int	ft_check_which_key(int key, t_list2 *game, int *line, int *chara)
 {
-    ft_move(key, &(game -> mbls), &(game -> mbcs));
-    if(game -> mbls == 0 && game -> mbcs == 0)
-        return (0);
-    if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == '0' || game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'C')
-    {
-        if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'C')
-            game -> check1--;
-        game -> MAP[*line + game -> mbls][*chara + game -> mbcs] = game -> MAP[*line][*chara];
-        game -> MAP[*line][*chara] = '0';
-        *line = *line + game -> mbls;
-        *chara = *chara + game -> mbcs;
-        return (1);
-    }
-    else if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == '1')
-        return (0); 
-    else if (game -> MAP[*line + game -> mbls][*chara + game -> mbcs] == 'E')
-    {
-        if (game -> check1 == 0)
-        {
-            mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
-            exit(0);
-        }
-    }
-    return (0);
+	ft_move(key, &(game -> mbls), &(game -> mbcs));
+	if (game -> mbls == 0 && game -> mbcs == 0)
+		return (0);
+	if (game -> map[*line + game -> mbls][*chara + game -> mbcs] == '0'
+		|| game -> map[*line + game -> mbls][*chara + game -> mbcs] == 'C')
+	{
+		if (game -> map[*line + game -> mbls][*chara + game -> mbcs] == 'C')
+			game -> cls_check--;
+		game -> map[*line + game -> mbls][*chara + game -> mbcs]
+			= game -> map[*line][*chara];
+		game -> map[*line][*chara] = '0';
+		*line = *line + game -> mbls;
+		*chara = *chara + game -> mbcs;
+		return (1);
+	}
+	else if (game -> map[*line + game -> mbls][*chara + game -> mbcs] == '1')
+		return (0);
+	else if (game -> map[*line + game -> mbls][*chara + game -> mbcs] == 'E')
+	{
+		if (game -> cls_check == 0)
+		{
+			mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+			exit(0);
+		}
+	}
+	return (0);
 }
-int ft_which_key(int key, t_LIST *game)
+
+int	ft_which_key(int key, t_list2 *game)
 {
-    static int i;
-    static int j;
-    
-    if (key == 53)
-    {
-        mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
-        exit(0);
-    }
-    while (game -> MAP[j])
-    {
-        while (game -> MAP[j][i] != '\0' && game -> MAP[j][i] != 'P')
-            i++;
-        if (game -> MAP[j][i] == 'P')
-            break;
-        i = 0;
-        j++; 
-    }
-    game -> check = ft_check_which_key(key, game, &j, &i);
-    if (game -> check == 1)
-    {
-        mlx_clear_window(game -> mlx_ptr, game -> win_ptr);
-        ft_put_img(game);
-    }
-    return (0);
+	if (key == 53)
+	{
+		mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+		exit(0);
+	}
+	ft_find_player(game);
+	game -> check = ft_check_which_key
+		(key, game, &(game -> p_line), &(game -> p_chara));
+	if (game -> check == 1)
+	{
+		mlx_clear_window(game -> mlx_ptr, game -> win_ptr);
+		ft_put_img(game);
+	}
+	game -> move++;
+	ft_printf("step : %d\n", game -> move);
+	return (0);
 }

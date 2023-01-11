@@ -6,37 +6,48 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:20:53 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/02 16:29:38 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:48:15 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "so_long.h"
-void ft_which_error(t_LIST *game)
+
+void	ft_error_printer(t_list2 *game)
 {
-    if (game -> true == 1)
-        ft_printf("Error\nThe Lines of the Map are not the exactly the same");
-    else if (game -> true == 2)
-        ft_printf("Error\nYour Map it's not surrounded by Walls");
-    else if (game -> true == 3)
-        ft_printf("Error\nOne of The Characters is not one of its Compositions");
-    else if (game -> true == 4)
-        ft_printf("Error\nThe Map is not Rectangular, do I have to be specific wit this also");
+	// if (to_check -> equality == 1)
+	// 	ft_printf("Error\nThe Lines of the Map are not the exactly the same");
+	// else if (to_check -> walls == 1)
+	// 	ft_printf("Error\nYour Map it's not surrounded by Walls");
+	// else if (to_check -> imposter == 1)
+	// 	ft_printf("Error\nOne of The Characters is not one of its Compositions");
+	if (game -> p_check != 1)
+		ft_printf("Error\nThere is a Problem with Your player");
+	else if (game -> cls_check == 0)
+		ft_printf("Error\nThere is no collectibles to work with");
+	else if(game -> e_check != 1)		
+		ft_printf("Error\nThere is a Problem with your Exit");
 }
-int main(int ac, char **av)
+
+int	main(int ac, char **av)
 {
-    t_LIST game;
-    if (ac == 2)
-    {
-        game.MAP = themap(av[1]);
-        // if (game.MAP == NULL)
-        //      return(ft_printf("Error\nYour Map it's not surrounded by Walls"), 0);
-        game.true = ft_check(&game);
-        //printf("%d", game.true);
-        if (game.true != 0)
-            ft_which_error(&game);
-        else if (game.true == 0)    
-            ft_mywindow(&game); 
-    }
-    return (0);
+	t_list2 game; 
+	if (ac == 2)
+	{
+		game.p_line = 0;
+		game.p_chara = 0;
+	    if (themap(av[1], &game) == 0)
+	 	{
+			if (ft_check(&game) == 1)
+				return (ft_error_printer(&game), 0);
+			if (ft_check(&game) == 0)
+		  	{	
+		 		if (floodfill(&game) == 1)
+					return (0);
+				else if (floodfill(&game) == 0)
+					ft_mywindow(&game);
+		 	}
+		}
+	}
+	return (0);
 }

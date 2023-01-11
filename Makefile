@@ -2,7 +2,8 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror 
 
-SRCS = ft_check.c ft_dostrlen.c ft_mywindow.c so_long.c themap.c ft_which_image.c ft_which_pointer.c  ft_put_img.c ft_which_key.c 
+SRCS = ft_check.c ft_dostrlen.c ft_mywindow.c so_long.c themap.c ft_which_image.c ft_which_pointer.c  ft_put_img.c ft_which_key.c \
+		floodfill.c ft_find_player.c
 
 NAME = so_long
 

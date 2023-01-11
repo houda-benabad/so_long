@@ -6,16 +6,22 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:24:46 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/01 16:53:17 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:19:48 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-void ft_which_pointer(t_LIST *game)
+
+void	ft_which_pointer(t_list2 *game)
 {
-    game -> wall = mlx_xpm_file_to_image(game -> mlx_ptr, "textures/AnyConv.com__my floor.xpm", &(game -> x), &(game -> y));
-    game -> floor = mlx_xpm_file_to_image(game -> mlx_ptr, "textures/785136_1.xpm", &(game -> x), &(game -> y));
-    game -> rabbit = mlx_xpm_file_to_image(game -> mlx_ptr, "textures/AnyConv.com__my rabbit.xpm", &(game -> x), &(game -> y));
-    game -> carrot = mlx_xpm_file_to_image(game -> mlx_ptr, "textures/AnyConv.com__mycollectible.xpm", &(game -> x), &(game -> y));
-    game -> exit = mlx_xpm_file_to_image(game -> mlx_ptr, "textures/AnyConv.com__myexit.xpm", &(game -> x), &(game -> y));
+	game -> wall = mlx_xpm_file_to_image(game -> mlx_ptr,
+			"textures/wall.xpm", &(game -> x), &(game -> y));
+	game -> floor = mlx_xpm_file_to_image(game -> mlx_ptr,
+			"textures/floor.xpm", &(game -> x), &(game -> y));
+	game -> rabbit = mlx_xpm_file_to_image(game -> mlx_ptr,
+			"textures/rabbit.xpm", &(game -> x), &(game -> y));
+	game -> carrot = mlx_xpm_file_to_image(game -> mlx_ptr,
+	 		"textures/mycollectible.xpm", &(game -> x), &(game -> y));
+	game -> exit = mlx_xpm_file_to_image(game -> mlx_ptr,
+			"textures/exit.xpm", &(game -> x), &(game -> y));
 }
