@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:50:41 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 12:18:07 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:02:38 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct to_check
 	int imposter;
 	int equality;
 	int walls;
+	int p_check;
+	int e_check;
 }	t_list1;
 
 typedef struct game
@@ -36,8 +38,7 @@ typedef struct game
 	int x;
 	int y;
 	int cls_check;
-	int p_check;
-	int e_check;
+	
 	int check;
 	int true3;
 	int p_line;
@@ -54,7 +55,7 @@ typedef struct game
 }   t_list2;
 
 int themap(char *map, t_list2 *game); 
-int	ft_check(t_list2 *game);
+int	ft_check(t_list1 *to_check,t_list2 *game);
 int ft_mywindow(t_list2 *game);
 size_t ft_dostrlen(char **MAP);
 size_t	ft_strlen(const char *s);

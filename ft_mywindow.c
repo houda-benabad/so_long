@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 12:24:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/10 17:04:50 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:06:21 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	ft_mywindow(t_list2 *game)
 {
+	game -> move = 0;
 	game -> mlx_ptr = mlx_init();
 	game -> win_ptr = mlx_new_window (game -> mlx_ptr, 60 * game -> len, 60 * game -> dolen, "My Game");
 	ft_which_pointer(game);

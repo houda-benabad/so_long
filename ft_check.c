@@ -6,62 +6,59 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:59:19 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 15:49:38 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:02:10 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
 
-int	ft_valid(t_list2 *game, char c, int chara, int line)
+int	ft_valid(t_list1 *to_check, t_list2 *game, int line, int chara)
 {	
-	game -> len = ft_strlen(game -> map[line]);
-	game -> dolen = ft_dostrlen(game -> map);
 	if (game -> map[line + 1])
 	{
 		if (ft_strlen(game -> map[line]) != ft_strlen(game -> map[line + 1]))
-			return (1);
+			return (to_check -> equality = 1, 1);
 	}
-	else if (line == 0 || chara == 0 || chara == game -> len - 1
-		|| line == game -> dolen - 1)
-	{	
-		if (c != '1')
-			return (2);
+	if (line == 0 || chara == 0 || chara == game -> len - 1 || line == game -> dolen - 1)
+	{
+		if (game -> map[line][chara] != '1')
+			return (to_check -> walls = 1, 1);
 	}
-	if (c == 'P')
-		game -> p_check++;
-	else if (c == 'C')
+	if (game -> map[line][chara] == 'P')
+		to_check -> p_check++;
+	else if (game -> map[line][chara] == 'C')
 		game -> cls_check++;
-	else if (c == 'E')
-		game-> e_check++;
-	else if (c != '0' && c != '1' && c != 'P' && c != 'E' && c != 'C')
-		return (3);
-	else if (line == game -> dolen - 1 && (game -> p_check != 1
-			|| game -> cls_check == 0 || game -> e_check != 1))
-		return (4);
+	else if (game -> map[line][chara] == 'E')
+		to_check-> e_check++;
+	else if (game -> map[line][chara] != '0' && game -> map[line][chara] != '1' && game -> map[line][chara] != 'P' && game -> map[line][chara] != 'E' && game -> map[line][chara] != 'C')
+		return (to_check -> imposter = 1, 1);
+	if (line == game -> dolen - 1 && (to_check -> p_check != 1
+			|| game -> cls_check == 0 || to_check -> e_check != 1))
+		return (1);
 	return (0);
 }
 
-int	ft_check(t_list2 *game)
+int	ft_check(t_list1 *to_check,t_list2 *game)
 {
 	int	i;
 	int	line;
-
-	line = 0;
+	
 	game -> cls_check = 0;
-	game -> p_check = 0;
-	game -> e_check = 0;
+	to_check -> p_check = 0;
+	to_check -> e_check = 0;
+	line = 0;
 	game -> dolen = ft_dostrlen(game -> map);
+	game -> len = ft_strlen(game -> map[line]);
 	if (ft_strlen(game -> map[line]) != ft_dostrlen(game -> map))
 	{
-		game -> len = ft_strlen(game -> map[line]);
 		while (game -> map[line])
 		{
 			i = 0;
 			while (game ->map[line][i])
 			{
-				if (ft_valid(game, game -> map[line][i], i, line) != 0)
-					return (ft_valid(game, game -> map[line][i], i, line));
+				if (ft_valid(to_check, game, line, i) == 1)
+					return (1);
 				i++;
 			}
 			line++;
