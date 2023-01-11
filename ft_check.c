@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:59:19 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 17:02:10 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:19:39 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_valid(t_list1 *to_check, t_list2 *game, int line, int chara)
 		to_check-> e_check++;
 	else if (game -> map[line][chara] != '0' && game -> map[line][chara] != '1' && game -> map[line][chara] != 'P' && game -> map[line][chara] != 'E' && game -> map[line][chara] != 'C')
 		return (to_check -> imposter = 1, 1);
-	if (line == game -> dolen - 1 && (to_check -> p_check != 1
+	if (line == game -> dolen - 1 && chara == game -> len - 1 && (to_check -> p_check != 1
 			|| game -> cls_check == 0 || to_check -> e_check != 1))
 		return (1);
 	return (0);

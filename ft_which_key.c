@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:13:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/10 13:50:14 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:49:21 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ void	ft_move(int key, int *a, int *b)
 		*b = 1;
 }
 
-int	ft_check_which_key(int key, t_list2 *game, int *line, int *chara)
+int	ft_check_which_key(t_list2 *game, int *line, int *chara)
 {
-	ft_move(key, &(game -> mbls), &(game -> mbcs));
-	if (game -> mbls == 0 && game -> mbcs == 0)
-		return (0);
 	if (game -> map[*line + game -> mbls][*chara + game -> mbcs] == '0'
 		|| game -> map[*line + game -> mbls][*chara + game -> mbcs] == 'C')
 	{
@@ -65,8 +62,11 @@ int	ft_which_key(int key, t_list2 *game)
 		exit(0);
 	}
 	ft_find_player(game);
+	ft_move(key, &(game -> mbls), &(game -> mbcs));
+	if (game -> mbls == 0 && game -> mbcs == 0)
+		return (0);
 	game -> check = ft_check_which_key
-		(key, game, &(game -> p_line), &(game -> p_chara));
+		(game, &(game -> p_line), &(game -> p_chara));
 	if (game -> check == 1)
 	{
 		mlx_clear_window(game -> mlx_ptr, game -> win_ptr);

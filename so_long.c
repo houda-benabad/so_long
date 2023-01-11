@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:20:53 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 17:16:36 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:14:14 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 			return (ft_printf("Error\nThis is not the right file"), 0);
 		game.p_line = 0;
 		game.p_chara = 0;
+		//printf("%d\n", themap(av[1], &game));
 	    if (themap(av[1], &game) == 0)
 	 	{
 			if (ft_check(&to_check, &game) == 1)
@@ -57,8 +58,10 @@ int	main(int ac, char **av)
 		 		if (floodfill(&game) == 1)
 					return (0);
 				else if (floodfill(&game) == 0)
+				{
 					ft_mywindow(&game);
-		 	}
+				}
+			}
 		}
 	}
 	return (0);

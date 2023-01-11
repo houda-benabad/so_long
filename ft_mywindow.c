@@ -6,13 +6,18 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 12:24:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 17:06:21 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:50:58 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
 
+int finish(t_list2 *game)
+{
+	mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+		exit(0);
+}
 int	ft_mywindow(t_list2 *game)
 {
 	game -> move = 0;
@@ -20,7 +25,8 @@ int	ft_mywindow(t_list2 *game)
 	game -> win_ptr = mlx_new_window (game -> mlx_ptr, 60 * game -> len, 60 * game -> dolen, "My Game");
 	ft_which_pointer(game);
 	ft_put_img(game);
-	mlx_key_hook(game -> win_ptr, ft_which_key, game);
+	mlx_hook(game->win_ptr,2, 0, ft_which_key, game);
+	mlx_hook(game->win_ptr, 17, 0, finish, game);
 	mlx_loop(game -> mlx_ptr);
 	return (0);
 }
