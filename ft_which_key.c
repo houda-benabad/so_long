@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:13:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 18:49:21 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:02:35 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	ft_check_which_key(t_list2 *game, int *line, int *chara)
 		if (game -> cls_check == 0)
 		{
 			mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+			free(game -> map);
 			exit(0);
 		}
 	}
@@ -59,6 +60,7 @@ int	ft_which_key(int key, t_list2 *game)
 	if (key == 53)
 	{
 		mlx_destroy_window(game -> mlx_ptr, game -> win_ptr);
+		free(game -> map);
 		exit(0);
 	}
 	ft_find_player(game);

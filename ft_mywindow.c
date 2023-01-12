@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 12:24:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/12 09:16:06 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:01:46 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int	ft_which_event(t_list2 *game)
 {
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	free(game -> map);
 	exit(0);
 }
 

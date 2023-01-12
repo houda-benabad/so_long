@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:20:53 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/12 11:50:07 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:01:04 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ int	main(int ac, char **av)
 			}
 		}
 	}
-	system ("leaks so_long");
 	return (0);
 }
