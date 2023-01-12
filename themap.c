@@ -6,15 +6,16 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:35:33 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 18:27:38 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:05:21 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <stdio.h>
-int check_str(char *str)
+
+int	check_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -25,6 +26,7 @@ int check_str(char *str)
 	}
 	return (0);
 }
+
 int	themap(char *map, t_list2 *game)
 {
 	int		fd;
@@ -41,10 +43,12 @@ int	themap(char *map, t_list2 *game)
 	while (line != NULL)
 	{
 		str = ft_join(str, line);
+		free (line);
 		line = get_next_line(fd);
 	}
 	if (check_str(str) == 1)
 		return (ft_printf("Error\nThere is an empty line on The Map"), 1);
 	game -> map = ft_split(str, '\n');
+	free (str);
 	return (0);
 }

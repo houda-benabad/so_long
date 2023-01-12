@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 10:51:34 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/11 15:47:54 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:48:35 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**floodfill_map(t_list2 *game)
 	char	**p;
 	int		j;
 
-	p = malloc ((game -> dolen + 1 ) * sizeof (char *));
+	p = malloc ((game -> dolen + 1) * sizeof (char *));
 	if (!p)
 		return (NULL);
 	j = 0;
@@ -59,6 +59,17 @@ int	ft_check_themap(char **p, int line, int chara)
 	return (0);
 }
 
+void	ft_free_flmap(char **p, int j)
+{
+	j--;
+	while (j >= 0)
+	{
+		free(p[j]);
+		j--;
+	}
+	free (p);
+}
+
 int	floodfill(t_list2 *game)
 {
 	char	**p;
@@ -84,5 +95,6 @@ int	floodfill(t_list2 *game)
 		}
 		j++;
 	}
+	ft_free_flmap(p, j);
 	return (0);
 }

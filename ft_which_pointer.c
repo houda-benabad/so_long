@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:24:46 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/10 12:19:48 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 09:16:48 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_which_pointer(t_list2 *game)
 	game -> rabbit = mlx_xpm_file_to_image(game -> mlx_ptr,
 			"textures/rabbit.xpm", &(game -> x), &(game -> y));
 	game -> carrot = mlx_xpm_file_to_image(game -> mlx_ptr,
-	 		"textures/mycollectible.xpm", &(game -> x), &(game -> y));
+			"textures/mycollectible.xpm", &(game -> x), &(game -> y));
 	game -> exit = mlx_xpm_file_to_image(game -> mlx_ptr,
 			"textures/exit.xpm", &(game -> x), &(game -> y));
 }
