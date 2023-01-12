@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 19:20:53 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/12 12:01:04 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:48:03 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	main(int ac, char **av)
 				return (ft_error_printer(&to_check, &game), 0);
 			if (ft_check(&to_check, &game) == 0)
 			{
+				if (game.dolen == game.len)
+					return (ft_printf("Error\nThe map is not Rectangular"), 0);
 				if (floodfill(&game) == 1)
 					return (0);
 				if (floodfill(&game) == 0)

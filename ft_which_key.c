@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:13:59 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/12 12:02:35 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:58:36 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	ft_which_key(int key, t_list2 *game)
 	if (game -> check == 1)
 	{
 		mlx_clear_window(game -> mlx_ptr, game -> win_ptr);
+		game -> move++;
+		ft_printf("step : %d\n", game -> move);
 		ft_put_img(game);
 	}
-	game -> move++;
-	ft_printf("step : %d\n", game -> move);
 	return (0);
 }

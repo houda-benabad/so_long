@@ -6,7 +6,7 @@
 /*   By: hobenaba <hobenaba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 10:59:19 by hobenaba          #+#    #+#             */
-/*   Updated: 2023/01/12 09:14:23 by hobenaba         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:46:12 by hobenaba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,16 @@ int	ft_check(t_list1 *to_check, t_list2 *game)
 	j = 0;
 	game -> dolen = ft_dostrlen(game -> map);
 	game -> len = ft_strlen(game -> map[j]);
-	if (ft_strlen(game -> map[j]) != ft_dostrlen(game -> map))
+	while (game -> map[j])
 	{
-		while (game -> map[j])
+		i = 0;
+		while (game ->map[j][i])
 		{
-			i = 0;
-			while (game ->map[j][i])
-			{
-				if (ft_valid(to_check, game, j, i) == 1)
-					return (1);
-				i++;
-			}
-			j++;
+			if (ft_valid(to_check, game, j, i) == 1)
+				return (1);
+			i++;
 		}
+		j++;
 	}
 	return (0);
 }
